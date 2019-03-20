@@ -1,8 +1,9 @@
-require('./api')
 const inbox = require('inbox')
 const parser = require('mailparser').simpleParser
 const iconv = require('iconv')
 const moment = require('moment')
+require('./api')
+
 const conv = new iconv.Iconv("ISO-2022-JP", "UTF-8");
 
 const { read, update }= require('./firebase')
