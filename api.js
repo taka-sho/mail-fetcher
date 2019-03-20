@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
     user: 'hakushin.express@gmail.com',
-    pass: 'imaimodels'
+    pass: process.env.PASS
   }
 })
 
