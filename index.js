@@ -30,7 +30,6 @@ client.on('new', (message) => {
       const body = conv.convert(mail.text).toString()
       const data = await parse2db(body)
       console.log(data)
-      await login(process.env.FIREBASE_MAIL, process.env.FIREBASE_PASS)
       update('orders/', data)
       // const body = mail.text
     })
