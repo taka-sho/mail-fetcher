@@ -1,3 +1,9 @@
+console.log('provate key id', process.env.FIREBASE_PRIVATE_KEY_ID)
+console.log('private key', process.env.FIREBASE_PRIVATE_KEY)
+console.log('client email', process.env.FIREBASE_CLIENT_EMAIL)
+console.log('client id', process.env.FIREBASE_CLIENT_ID)
+console.log('client_x509_cert_url', process.env.FIREBASE_CLIENT_X509_CERT_URL)
+
 const admin = require("firebase-admin")
 const serviceAccount = {
   "type": "service_account",
