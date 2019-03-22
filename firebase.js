@@ -1,34 +1,31 @@
-const firebase = require('firebase/app')
-require('firebase/database')
-
-// const config = {
-//   apiKey: process.env.API_KEY,
-//   authDomain: process.env.AUTH_DOMAIN,
-//   databaseURL: process.env.DATABASE_URL,
-//   projectId: process.env.PROJECT_ID,
-//   storageBucket: process.env.STORAGE_BUCKET,
-//   messagingSenderId: process.env.MESSAGING_SENDER_ID
-// }
-
-const config = {
-  apiKey: "AIzaSyCpwQB1T64mawu3q0A_2vZBHZjfeIaSAU4",
-  authDomain: "train-product-manager.firebaseapp.com",
-  databaseURL: "https://train-product-manager.firebaseio.com",
-  projectId: "train-product-manager",
-  storageBucket: "train-product-manager.appspot.com",
-  messagingSenderId: "1019313849328"
+const admin = require("firebase-admin")
+const serviceAccount = {
+  "type": "service_account",
+  "project_id": "train-product-manager",
+  "private_key_id": process.env.FIREBASE_PRIVATE_KEY_ID,
+  "private_key": process.env.FIREBASE_PRIVATE_KEY,
+  "client_email": process.env.FIREBASE_CLIENT_EMAIL,
+  "client_id": process.env.FIREBASE_CLIENT_ID,
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": process.env.FIREBASE_CLIENT_X509_CERT_URL
 }
 
-const f = firebase.initializeApp(config)
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://train-product-manager.firebaseio.com"
+})
 
 exports.read = (path) => {
-  return f.database().ref(path).once('value')
+  return admin.database().ref(path).once('value')
 }
 
 exports.update = (path, data) => {
-  return f.database().ref(path).update(data)
+  return admin.database().ref(path).update(data)
 }
 
 exports.login = (email, pass) => {
-  return f.auth().signInWithEmailAndPassword(email, password)
+  return admin.auth().signInWithEmailAndPassword(email, pass)
 }

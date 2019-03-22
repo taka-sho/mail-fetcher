@@ -20,6 +20,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "firebase": "^5.9.0",
+    "firebase-admin": "^7.1.1",
     "iconv": "^2.3.2",
     "inbox": "^1.1.59",
     "mailparser": "^2.5.0",
