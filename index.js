@@ -6,7 +6,7 @@ require('./api')
 
 const conv = new iconv.Iconv("ISO-2022-JP", "UTF-8");
 
-const { read, update }= require('./firebase')
+const { read, update, login }= require('./firebase')
 
 const client = inbox.createConnection(false, 'imap.gmail.com', {
   secureConnection: true,
@@ -30,6 +30,7 @@ client.on('new', (message) => {
       const body = conv.convert(mail.text).toString()
       const data = await parse2db(body)
       console.log(data)
+      await login(process.env.FIREBASE_MAIL, process.env.FIREBASE_PASS)
       update('orders/', data)
       // const body = mail.text
     })

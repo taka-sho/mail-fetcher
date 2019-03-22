@@ -1,5 +1,3 @@
-require('./api');
-
 const inbox = require('inbox');
 
 const parser = require('mailparser').simpleParser;
@@ -8,11 +6,14 @@ const iconv = require('iconv');
 
 const moment = require('moment');
 
+require('./api');
+
 const conv = new iconv.Iconv("ISO-2022-JP", "UTF-8");
 
 const {
   read,
-  update
+  update,
+  login
 } = require('./firebase');
 
 const client = inbox.createConnection(false, 'imap.gmail.com', {
@@ -34,6 +35,7 @@ client.on('new', message => {
     const body = conv.convert(mail.text).toString();
     const data = await parse2db(body);
     console.log(data);
+    await login(process.env.FIREBASE_MAIL, process.env.FIREBASE_PASS);
     update('orders/', data); // const body = mail.text
   }).catch(err => {
     console.log(err);

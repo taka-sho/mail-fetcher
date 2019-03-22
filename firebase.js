@@ -28,3 +28,7 @@ exports.read = (path) => {
 exports.update = (path, data) => {
   return f.database().ref(path).update(data)
 }
+
+exports.login = (email, pass) => {
+  return f.auth().signInWithEmailAndPassword(email, password)
+}
