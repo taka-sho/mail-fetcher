@@ -90,7 +90,7 @@ async function parse2db (text) {
   const new_id = await generateNewId()
   const initial_values = {
     id: new_id,
-    productsStatus: '',
+    productsStatus: '0',
     depositStatus: '',
     shipmentStatus: '',
     key: new_id,
