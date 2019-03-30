@@ -86,6 +86,11 @@ async function parse2db (text) {
       return null
     }
   })
+  Object.keys(products).forEach((key) => {
+    if (!products[key]) {
+      delete products[key]
+    }
+  })
   user_info.products = products
   const new_id = await generateNewId()
   const initial_values = {
