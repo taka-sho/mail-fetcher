@@ -24,7 +24,8 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date/:products', (req, res) 
     to: email,
     from: 'hakushin.express@gmail.com',
     subject: '入金の確認が終了いたしました。',
-    html: `<p>${userName}様</p>
+    html: `<body>
+    <p>${userName}様</p>
     <p>更新綜合車両事務所です。</p>
     <p>${userName}様がご注文された商品入金確認が終了いたしました。商品内容は以下の通りです。</p>
     <table style='border-width: thin; border-style: solid'>
@@ -45,6 +46,7 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date/:products', (req, res) 
         <td>${products}</td>
       </tr>
     </table>
+    </body>
     `
   }
   transporter.sendMail(mailOptions, (err, info) => {
