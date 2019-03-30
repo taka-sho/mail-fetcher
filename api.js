@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 
 
 // GET http://localhost:3000/api/v1/:id
-app.get('/api/v1/deposit/:email/:userName/', (req, res) => {
+app.get('/api/v1/deposit/:email/:userName/:address', (req, res) => {
   const { email, userName, address } = req.params
   const mailOptions = {
     to: email,
