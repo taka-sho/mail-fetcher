@@ -27,7 +27,7 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date/:products', (req, res) 
     html: `<p>${userName}様</p>
     <p>更新綜合車両事務所です。</p>
     <p>${userName}様がご注文された商品入金確認が終了いたしました。商品内容は以下の通りです。</p>
-    <table border='1' style='border-width: thin; border-style: solid'>
+    <table style='border-width: thin; border-style: solid'>
       <tr>
         <td>お客様名</td>
         <td>${userName}</td>
