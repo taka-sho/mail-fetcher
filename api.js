@@ -18,13 +18,34 @@ const transporter = nodemailer.createTransport({
 
 
 // GET http://localhost:3000/api/v1/:id
-app.get('/api/v1/deposit/:email', (req, res) => {
-  const email = req.params.email
+app.get('/api/v1/deposit/:email/:userName/', (req, res) => {
+  const { email, userName, address } = req.params
   const mailOptions = {
     to: email,
     from: 'hakushin.express@gmail.com',
-    subject: 'アカウントの確認',
-    html: '<p>テストメール</p>'
+    subject: '入金の確認が終了いたしました。',
+    html: `<p>${userName}様</p>
+    <p>更新綜合車両事務所です。</p>
+    <p>${userName}様がご注文された商品入金確認が終了いたしました。商品内容は以下の通りです。</p>
+    <table>
+      <tr>
+        <td>お客様名</td>
+        <td>${userName}</td>
+      </tr>
+      <tr>
+        <td>ご注文日時</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>ご住所</td>
+        <td>${address}</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    `
   }
   transporter.sendMail(mailOptions, (err, info) => {
     if (err){
