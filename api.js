@@ -18,8 +18,8 @@ const transporter = nodemailer.createTransport({
 
 
 // GET http://localhost:3000/api/v1/:id
-app.get('/api/v1/deposit/:email/:userName/:address/:date', (req, res) => {
-  const { email, userName, address, date } = req.params
+app.get('/api/v1/deposit/:email/:userName/:address/:date/:products', (req, res) => {
+  const { email, userName, address, date, products } = req.params
   const mailOptions = {
     to: email,
     from: 'hakushin.express@gmail.com',
@@ -41,8 +41,8 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date', (req, res) => {
         <td>${address}</td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
+        <td>ご注文内容</td>
+        <td>${products}</td>
       </tr>
     </table>
     `
