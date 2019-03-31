@@ -130,7 +130,13 @@ app.get('/api/v1/sent-shipment/:email/:userName/:address/:date/:products/:price/
       <p>${userName}様</p>
       <p>更新綜合車両事務所です。</p>
       <p>${userName}様がご注文された商品を出荷いたしました。ご注文内容以下の通りです。</p>
-      <table style='border-width: thin; border-style: solid'>
+      <table
+        style='
+          border-width: thin;
+          border-style: solid;
+          border-collapse: collapse;
+        '
+      >
         <tr>
           <td>お客様名</td>
           <td>${userName}</td>
