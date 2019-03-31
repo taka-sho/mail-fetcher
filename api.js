@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 
 
 // GET http://localhost:3000/api/v1/:id
-app.get('/api/v1/deposit/:email/:userName/:address/:date/:products', (req, res) => {
+app.get('/api/v1/deposit/:email/:userName/:address/:date/:products/:price', (req, res) => {
   const { email, userName, address, date, products, price } = req.params
   const mailOptions = {
     to: email,
@@ -44,6 +44,10 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date/:products', (req, res) 
       <tr>
         <td>商品内容</td>
         <td>${products}</td>
+      </tr>
+      <tr>
+        <td>ご注文金額</td>
+        <td>${price}</td>
       </tr>
     </table>
     <p>商品の発送をもうしばらくお待ちくださいませ。<br><br><br>これからも更新綜合車両事務所をよろしくお願いいたします。</p>
