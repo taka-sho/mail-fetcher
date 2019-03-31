@@ -104,7 +104,7 @@ async function parse2db (text) {
       amount += productsList[productName[0]][productName].value * Number(products[productName])
     }
   })
-  user_info.price = amount
+  user_info.price = amount * 1.08
   user_info.products = products
   const new_id = await generateNewId()
   const initial_values = {
