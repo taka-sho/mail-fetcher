@@ -86,11 +86,25 @@ async function parse2db (text) {
       return null
     }
   })
+  // delete product if count is zero
   Object.keys(products).forEach((key) => {
     if (!products[key]) {
       delete products[key]
     }
   })
+  // 合計金額を計算する
+  let amount = 0
+  const productsList= (await read('/productsList')).val()
+
+  Object.keys(products).forEach((productName) => {
+    if (productName.match(/-/)) {
+      const [companyName, id ]= productName.split('-')
+      amount += productsList[companyName][id].value * Number(products[productName])
+    } else {
+      amount += productsList[productName[0]][productName].value * Number(products[productName])
+    }
+  })
+  user_info.price = amount
   user_info.products = products
   const new_id = await generateNewId()
   const initial_values = {
