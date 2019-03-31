@@ -100,10 +100,12 @@ async function parse2db (text) {
     if (productName.match(/-/)) {
       console.log('products', products)
       console.log('productName', productName)
-      const [companyName, id ]= productName.split(' ')
-      console.log('companyName: ', companyName)
-      console.log('productId: ', id)
-      console.log('productsList[companyName][id]', productsList[companyName][id])
+      const productBasic = productName.split('-')
+      console.log('productBasic', productBasic)
+      const companyName= productBasic[0]
+      console.log('companyName', companyName)
+      const id = productBasic.slice(1, productBasic.length).join('')
+      console.log('id', id)
       amount += productsList[companyName][id].value * Number(products[productName])
     } else {
       amount += productsList[productName[0]][productName].value * Number(products[productName])
