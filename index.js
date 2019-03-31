@@ -99,6 +99,9 @@ async function parse2db (text) {
   Object.keys(products).forEach((productName) => {
     if (productName.match(/-/)) {
       const [companyName, id ]= productName.split('-')
+      console.log('companyName: ', companyName)
+      console.log('productId: ', id)
+      console.log('productsList[companyName][id]', productsList[companyName][id])
       amount += productsList[companyName][id].value * Number(products[productName])
     } else {
       amount += productsList[productName[0]][productName].value * Number(products[productName])
