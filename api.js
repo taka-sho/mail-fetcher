@@ -28,7 +28,7 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date/:products', (req, res) 
     <p>${userName}様</p>
     <p>更新綜合車両事務所です。</p>
     <p>${userName}様がご注文の入金確認が終了いたしました。ご注文内容は以下の通りです。</p>
-    <table style='border-width: thin; border-style: solid'>
+    <table style='border-collapse: collapse' border='2'>
       <tr>
         <td>お客様名</td>
         <td>${userName}</td>
@@ -75,7 +75,7 @@ app.get('/api/v1/deposit-warning/:email/:userName/:address/:date/:products/:pric
       <p>${userName}様</p>
       <p>更新綜合車両事務所です。</p>
       <p>${userName}様がご注文された商品入金が確認できていません。ご注文内容以下の通りです。</p>
-      <table style='border-width: thin; border-style: solid'>
+      <table style='border-collapse: collapse' border='2'>
         <tr>
           <td>お客様名</td>
           <td>${userName}</td>
