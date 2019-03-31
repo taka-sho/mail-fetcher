@@ -124,19 +124,13 @@ app.get('/api/v1/sent-shipment/:email/:userName/:address/:date/:products/:price/
   const mailOptions = {
     to: email,
     from: 'hakushin.express@gmail.com',
-    subject: 'ご入金のご確認',
+    subject: '商品出荷のご連絡',
     html: `
     <body>
       <p>${userName}様</p>
       <p>更新綜合車両事務所です。</p>
       <p>${userName}様がご注文された商品を出荷いたしました。ご注文内容以下の通りです。</p>
-      <table
-        style='
-          border-width: thin;
-          border-style: solid;
-          border-collapse: collapse;
-        '
-      >
+      <table style='border-collapse: collapse' border='2'>
         <tr>
           <td>お客様名</td>
           <td>${userName}</td>
@@ -159,7 +153,7 @@ app.get('/api/v1/sent-shipment/:email/:userName/:address/:date/:products/:price/
         </tr>
         <tr>
           <td>追跡番号</td>
-          <td>${shipmentNumber}円</td>
+          <td>${shipmentNumber}</td>
         </tr>
         <tr>
           <td>追跡ページ</td>
