@@ -98,7 +98,9 @@ async function parse2db (text) {
 
   Object.keys(products).forEach((productName) => {
     if (productName.match(/-/)) {
-      const [companyName, id ]= productName.split('-')
+      console.log('products', products)
+      console.log('productName', productName)
+      const [companyName, id ]= productName.split(' ')
       console.log('companyName: ', companyName)
       console.log('productId: ', id)
       console.log('productsList[companyName][id]', productsList[companyName][id])
