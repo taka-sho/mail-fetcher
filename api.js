@@ -47,7 +47,7 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date/:products/:price', (req
       </tr>
       <tr>
         <td>ご注文金額</td>
-        <td>${price}</td>
+        <td>¥${price}</td>
       </tr>
     </table>
     <p>商品の発送をもうしばらくお待ちくださいませ。<br><br><br>これからも更新綜合車両事務所をよろしくお願いいたします。</p>
