@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel index.js --out-file script-compiled.js",
+    "start": "forever index.js",
     "watch": "babel index.js --out-file script-compiled.js --watch",
     "prewatch": "yarn build"
   },
