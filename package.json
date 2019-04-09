@@ -21,16 +21,19 @@
     "express": "^4.16.4",
     "firebase": "^5.9.0",
     "firebase-admin": "^7.1.1",
+    "forever": "^1.0.0",
     "iconv": "^2.3.2",
     "inbox": "^1.1.59",
     "mailparser": "^2.5.0",
     "moment": "^2.24.0",
-    "nodemailer": "^5.1.1"
+    "nodemailer": "^5.1.1",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
     "@types/iconv": "^2.1.16",
+    "@types/request": "^2.48.1",
     "@types/webpack": "^4.4.25",
     "ts-loader": "^5.3.3",
     "ts-node": "^8.0.3",
