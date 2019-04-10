@@ -11,8 +11,8 @@ const { read, update, login }= require('./firebase')
 const client = inbox.createConnection(false, 'imap.gmail.com', {
   secureConnection: true,
   auth: {
-    user: 'hakushin.express@gmail.com',
-    pass: 'imaimodels'
+    user: 'koushincarfirm@gmail.com',
+    pass: process.env.PRODUCTION_PASS
   }
 })
 
