@@ -7,12 +7,18 @@ require('./api')
 const conv = new iconv.Iconv("ISO-2022-JP", "UTF-8");
 
 const { read, update, login }= require('./firebase')
+const recieveMailPass = process.env.PASS
+const sendMailPass = process.env.PRODUCTION_PASS
 
 const client = inbox.createConnection(false, 'imap.gmail.com', {
   secureConnection: true,
+  // auth: {
+  //   user: 'hakushin.express@gmail.com',
+  //   pass: recieveMailPass
+  // }
   auth: {
-    user: 'hakushin.express@gmail.com',
-    pass: process.env.PASS
+    user: 'koushincarfirm@gmail.com',
+    pass: sendMailPass
   }
 })
 

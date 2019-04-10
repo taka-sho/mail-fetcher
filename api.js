@@ -7,12 +7,13 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 const port = process.env.PORT || 3000
+const sendMailPass = process.env.PRODUCTION_PASS
 
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
     user: 'koushincarfirm@gmail.com',
-    pass: process.env.PRODUCTION_PASS
+    pass: sendMailPass
   }
 })
 
