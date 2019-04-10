@@ -22,7 +22,7 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date/:products/:price', (req
   const { email, userName, address, date, products, price } = req.params
   const mailOptions = {
     to: email,
-    from: 'hakushin.express@gmail.com',
+    from: 'koushincarfirm@gmail.com',
     subject: '入金の確認が終了いたしました。',
     html: `<body>
     <p>${userName}様</p>
@@ -73,7 +73,7 @@ app.get('/api/v1/deposit-warning/:email/:userName/:address/:date/:products/:pric
   const { email, userName, address, date, products, price } = req.params
   const mailOptions = {
     to: email,
-    from: 'hakushin.express@gmail.com',
+    from: 'koushincarfirm@gmail.com',
     subject: 'ご入金のご確認',
     html: `
     <body>
@@ -128,7 +128,7 @@ app.get('/api/v1/sent-shipment/:email/:userName/:address/:date/:products/:price/
   const { email, userName, address, date, products, price, shipmentNumber } = req.params
   const mailOptions = {
     to: email,
-    from: 'hakushin.express@gmail.com',
+    from: 'koushincarfirm@gmail.com',
     subject: '商品出荷のご連絡',
     html: `
     <body>
