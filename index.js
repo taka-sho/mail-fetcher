@@ -12,13 +12,9 @@ const sendMailPass = process.env.PRODUCTION_PASS
 
 const client = inbox.createConnection(false, 'imap.gmail.com', {
   secureConnection: true,
-  // auth: {
-  //   user: 'hakushin.express@gmail.com',
-  //   pass: recieveMailPass
-  // }
   auth: {
-    user: 'koushincarfirm@gmail.com',
-    pass: sendMailPass
+    user: 'hakushin.express@gmail.com',
+    pass: process.env.PASS
   }
 })
 

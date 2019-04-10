@@ -12,8 +12,8 @@ const sendMailPass = process.env.PRODUCTION_PASS
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: 'koushincarfirm@gmail.com',
-    pass: sendMailPass
+    user: 'hakushin.express@gmail.com',
+    pass: process.env.PASS
   }
 })
 
