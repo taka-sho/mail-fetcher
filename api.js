@@ -69,6 +69,7 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date/:products/:price', (req
   })
 })
 app.get('/api/v1/deposit-warning/:email/:userName/:address/:date/:products/:price', (req, res) => {
+  console.log('PassPassPass', process.env.PRODUCTION_PASS)
   const { email, userName, address, date, products, price } = req.params
   const mailOptions = {
     to: email,
