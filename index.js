@@ -31,7 +31,6 @@ client.on('new', (message) => {
     .then(async (mail) => {
       const body = conv.convert(mail.text).toString()
       const data = await parse2db(body)
-      console.log(data)
       update('orders/', data)
       // const body = mail.text
     })
@@ -54,7 +53,7 @@ async function parse2db (text) {
       let p_info= val[0].split('】')[0].split('【').slice(-1)[0].split(' ')
       p_info = p_info.map((p) => p.replace(/ /g, ''))
       val = val.map((p) => p.replace(/ /g, ''))
-      if (p_info[0].toLowerCase().match(/tomix|kato|gm/)) {
+      if (p_info[0].toLowerCase().match(/tomix|kato|gm|micro/)) {
         // TOMIX|KATO|GM 製品
         products[`${p_info[0]}-${p_info[1]}`] = val[1]
       } else {
@@ -100,14 +99,9 @@ async function parse2db (text) {
 
   Object.keys(products).forEach((productName) => {
     if (productName.match(/-/)) {
-      console.log('products', products)
-      console.log('productName', productName)
       const productBasic = productName.split('-')
-      console.log('productBasic', productBasic)
       const companyName= productBasic[0]
-      console.log('companyName', companyName)
       const id = productBasic.slice(1, productBasic.length).join('-')
-      console.log('id', id)
       amount += productsList[companyName][id].value * Number(products[productName])
     } else {
       amount += productsList[productName[0]][productName].value * Number(products[productName])

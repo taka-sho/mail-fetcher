@@ -6,14 +6,16 @@ const nodemailer = require('nodemailer')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+const adminMailAddress = 'koushincarfirm@gmail.com'
+
 const port = process.env.PORT || 3000
 const sendMailPass = process.env.PRODUCTION_PASS
 
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: 'hakushin.express@gmail.com',
-    pass: process.env.PASS
+    user: adminMailAddress,
+    pass: process.env.PRODUCTION_PASS
   }
 })
 
@@ -23,7 +25,7 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date/:products/:price', (req
   const { email, userName, address, date, products, price } = req.params
   const mailOptions = {
     to: email,
-    from: 'koushincarfirm@gmail.com',
+    from: adminMailAddress,
     subject: '入金の確認が終了いたしました。',
     html: `<body>
     <p>${userName}様</p>
@@ -56,7 +58,7 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date/:products/:price', (req
     `
   }
   transporter.sendMail(mailOptions, (err, info) => {
-    if (err){
+    if (err) {
       console.log(err)
       res.json({
         message:`Failed sending mail to ${email}`
@@ -74,7 +76,7 @@ app.get('/api/v1/deposit-warning/:email/:userName/:address/:date/:products/:pric
   const { email, userName, address, date, products, price } = req.params
   const mailOptions = {
     to: email,
-    from: 'koushincarfirm@gmail.com',
+    from: adminMailAddress,
     subject: 'ご入金のご確認',
     html: `
     <body>
@@ -129,7 +131,7 @@ app.get('/api/v1/sent-shipment/:email/:userName/:address/:date/:products/:price/
   const { email, userName, address, date, products, price, shipmentNumber } = req.params
   const mailOptions = {
     to: email,
-    from: 'koushincarfirm@gmail.com',
+    from: adminMailAddress,
     subject: '商品出荷のご連絡',
     html: `
     <body>

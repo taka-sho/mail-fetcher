@@ -20,7 +20,7 @@ const client = inbox.createConnection(false, 'imap.gmail.com', {
   secureConnection: true,
   auth: {
     user: 'hakushin.express@gmail.com',
-    pass: 'imaimodels'
+    pass: process.env.PASS
   }
 });
 client.on('connect', () => {
@@ -35,7 +35,6 @@ client.on('new', message => {
     const body = conv.convert(mail.text).toString();
     const data = await parse2db(body);
     console.log(data);
-    await login(process.env.FIREBASE_MAIL, process.env.FIREBASE_PASS);
     update('orders/', data); // const body = mail.text
   }).catch(err => {
     console.log(err);
@@ -109,12 +108,37 @@ async function parse2db(text) {
 
       return null;
     }
+  }); // delete product if count is zero
+
+  Object.keys(products).forEach(key => {
+    if (!products[key]) {
+      delete products[key];
+    }
+  }); // 合計金額を計算する
+
+  let amount = 0;
+  const productsList = (await read('/productsList')).val();
+  Object.keys(products).forEach(productName => {
+    if (productName.match(/-/)) {
+      console.log('products', products);
+      console.log('productName', productName);
+      const productBasic = productName.split('-');
+      console.log('productBasic', productBasic);
+      const companyName = productBasic[0];
+      console.log('companyName', companyName);
+      const id = productBasic.slice(1, productBasic.length).join('-');
+      console.log('id', id);
+      amount += productsList[companyName][id].value * Number(products[productName]);
+    } else {
+      amount += productsList[productName[0]][productName].value * Number(products[productName]);
+    }
   });
+  user_info.price = Math.ceil(amount * 1.08);
   user_info.products = products;
   const new_id = await generateNewId();
   const initial_values = {
     id: new_id,
-    productsStatus: '',
+    productStatus: '0',
     depositStatus: '',
     shipmentStatus: '',
     key: new_id,
