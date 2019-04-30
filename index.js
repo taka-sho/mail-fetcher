@@ -7,6 +7,7 @@ require('./api')
 const conv = new iconv.Iconv("ISO-2022-JP", "UTF-8");
 
 const { read, update, login }= require('./firebase')
+
 const recieveMailPass = process.env.PASS
 const sendMailPass = process.env.PRODUCTION_PASS
 
@@ -22,6 +23,7 @@ client.on('connect', () => {
   client.openMailbox('INBOX', (error, info) => {
     if (error) throw error
     console.log('Successfully connected to server')
+    console.log(process.env.CLIENT_ID, process.env.CLIENT_SECRET, process.env.REFRESH_TOKEN)
   })
 })
 

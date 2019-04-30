@@ -9,14 +9,19 @@ app.use(bodyParser.json())
 const adminMailAddress = 'koushincarfirm@gmail.com'
 
 const port = process.env.PORT || 3000
-const sendMailPass = process.env.PRODUCTION_PASS
+
+
+var auth = {
+  type: 'OAuth2',
+  user: 'koushincarfirm@gmail.com',
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  refreshToken: process.env.REFRESH_TOKEN
+}
 
 const transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    user: adminMailAddress,
-    pass: process.env.PRODUCTION_PASS
-  }
+  host: 'smtp.gmail.com',
+  auth: auth
 })
 
 
@@ -30,7 +35,7 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date/:products/:price', (req
     html: `<body>
     <p>${userName}様</p>
     <p>更新綜合車両事務所です。</p>
-    <p>${userName}様がご注文の入金確認が終了いたしました。ご注文内容は以下の通りです。</p>
+    <p>この度は更新綜合車両事務所頒布ページへご注文をいただきありがとうございます。本日、以下のご注文・商品の入金を確認させていただきましたのでご連絡させていただきます。</p>
     <table style='border-collapse: collapse' border='2'>
       <tr>
         <td>お客様名</td>
@@ -53,7 +58,8 @@ app.get('/api/v1/deposit/:email/:userName/:address/:date/:products/:price', (req
         <td>¥${price}</td>
       </tr>
     </table>
-    <p>商品の発送をもうしばらくお待ちくださいませ。<br><br><br>これからも更新綜合車両事務所をよろしくお願いいたします。</p>
+    <p>商品が準備でき次第発送させていただきます。予約頒布品に関する開発状況などに関しては適宜Twitterなどで公開して参りますので引き続きよろしくお願い致します。</p>
+    <p>更新綜合車両事務所頒布担当</p>
     </body>
     `
   }
@@ -81,8 +87,10 @@ app.get('/api/v1/deposit-warning/:email/:userName/:address/:date/:products/:pric
     html: `
     <body>
       <p>${userName}様</p>
-      <p>更新綜合車両事務所です。</p>
-      <p>${userName}様がご注文された商品入金が確認できていません。ご注文内容以下の通りです。</p>
+      <p>この度は更新綜合車両事務所頒布ページへご注文をいただきありがとうございます。</p>
+      <p>商品代金のお振込・ご送金を確認できておりませんもので、大変不躾ながらご連絡させていただく次第です。<br>
+      一旦期限を延長させていただきますので、お振込・ご送金をいただけますようお願いいたします。また、もし何かご事情などがあるようでしたら、ご相談に乗らせていただきますので、ご連絡を頂けますと幸いです。<br>
+      なおご入金済みの場合でも、このメールと入れ違いに銀行の営業日や郵便の到着日数等の関係で確認がとれていない場合もございます。その場合は悪しからず御容赦のほどお願い申し上げます。</p>
       <table style='border-collapse: collapse' border='2'>
         <tr>
           <td>お客様名</td>
